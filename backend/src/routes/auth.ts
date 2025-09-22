@@ -5,19 +5,10 @@ export async function authRoutes(fastify: FastifyInstance) {
   const authService = new AuthService();
   fastify.post('/api/auth/register', async (request, reply) => {
     try {
-      console.log('Registration request body:', request.body);
       const validatedData = registerSchema.parse(request.body);
-      console.log('Validated data:', validatedData);
       const result = await authService.register(validatedData);
       return reply.status(201).send(result);
     } catch (error) {
-      console.error('Registration error:', error);
-      if (error instanceof Error) {
-        console.error('Error message:', error.message);
-        console.error('Error stack:', error.stack);
-      }
-      
-      // Handle Zod validation errors
       if (error && typeof error === 'object' && 'issues' in error) {
         const zodError = error as any;
         const errorMessage = zodError.issues.map((issue: any) => `${issue.path.join('.')}: ${issue.message}`).join(', ');
