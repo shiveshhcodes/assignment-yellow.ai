@@ -47,7 +47,7 @@ export default function Register() {
       });
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.message || 'Registration failed');
+        throw new Error(error.error || error.message || 'Registration failed');
       }
       const { token } = await response.json();
       authService.setToken(token);
