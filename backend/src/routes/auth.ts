@@ -16,6 +16,14 @@ export async function authRoutes(fastify: FastifyInstance) {
         console.error('Error message:', error.message);
         console.error('Error stack:', error.stack);
       }
+      
+      // Handle Zod validation errors
+      if (error && typeof error === 'object' && 'issues' in error) {
+        const zodError = error as any;
+        const errorMessage = zodError.issues.map((issue: any) => `${issue.path.join('.')}: ${issue.message}`).join(', ');
+        return reply.status(400).send({ error: `Validation error: ${errorMessage}` });
+      }
+      
       return reply.status(400).send({ error: (error as Error).message });
     }
   });
