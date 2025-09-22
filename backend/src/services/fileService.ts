@@ -102,7 +102,7 @@ export class FileService {
       const error = await response.text();
       throw new Error(`OpenAI Files API error: ${response.status} ${error}`);
     }
-    const data = await response.json();
+    const data = await response.json() as { id: string };
     return data.id;
   }
   private async deleteFromOpenAI(fileId: string): Promise<void> {

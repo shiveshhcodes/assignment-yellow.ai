@@ -12,7 +12,11 @@
     "db:generate": "prisma generate",
     "db:studio": "prisma studio"
   },
-  "keywords": ["chatbot", "api", "backend"],
+  "keywords": [
+    "chatbot",
+    "api",
+    "backend"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -28,6 +32,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.10.4",
+    "@vercel/node": "^3.2.29",
     "prisma": "^5.7.1",
     "tsx": "^4.6.2",
     "typescript": "^5.3.3"

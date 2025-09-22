@@ -1,33 +1,11 @@
 {
-  "version": 2,
-  "builds": [
+  "installCommand": "cd frontend && npm ci --include=dev && cd ../backend && npm ci --include=dev",
+  "buildCommand": "cd frontend && npm run build && cd ../backend && npm run vercel-build",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "frontend/dist"
-      }
-    },
-    {
-      "src": "backend/src/server.ts",
-      "use": "@vercel/node"
+      "source": "/api/(.*)",
+      "destination": "/backend/api/index.ts"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/backend/src/server.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/dist/$1"
-    }
-  ],
-  "env": {
-    "DATABASE_URL": "@database_url",
-    "JWT_SECRET": "@jwt_secret",
-    "GEMINI_API_KEY": "@gemini_api_key",
-    "AI_PROVIDER": "gemini",
-    "NODE_ENV": "production"
-  }
+  ]
 }

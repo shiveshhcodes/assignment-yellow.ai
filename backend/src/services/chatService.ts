@@ -62,7 +62,7 @@ export class ChatService {
       orderBy: { createdAt: 'desc' },
       take: limit,
     });
-    return messages.reverse(); // Return in chronological order
+    return messages.reverse();
   }
   private async buildConversationContext(projectId: string): Promise<ChatMessage[]> {
     const messages: ChatMessage[] = [];

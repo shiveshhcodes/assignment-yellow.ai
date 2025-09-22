@@ -1,8 +1,22 @@
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import { createApp } from '../src/app';
 
-const app = createApp();
+let app: any = null;
 
-export default async (req: any, res: any) => {
-  await app.ready();
-  app.server.emit('request', req, res);
+const getApp = async () => {
+  if (!app) {
+    app = createApp();
+    await app.ready();
+  }
+  return app;
+};
+
+export default async (req: VercelRequest, res: VercelResponse) => {
+  try {
+    const fastify = await getApp();
+    fastify.server.emit('request', req, res);
+  } catch (error) {
+    console.error('Serverless function error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 };

@@ -37,7 +37,7 @@ export class OpenAIAdapter implements ProviderAdapter {
         const error = await response.text();
         throw new Error(`OpenAI API error: ${response.status} ${error}`);
       }
-      const data = await response.json();
+      const data = await response.json() as any;
       if (!data.choices || !data.choices[0] || !data.choices[0].message) {
         throw new Error('Invalid response from OpenAI API');
       }
@@ -85,7 +85,7 @@ export class GeminiAdapter implements ProviderAdapter {
         const error = await response.text();
         throw new Error(`Gemini API error: ${response.status} ${error}`);
       }
-      const data = await response.json();
+      const data = await response.json() as any;
       if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
         throw new Error('Invalid response from Gemini API');
       }
@@ -149,7 +149,7 @@ export class OpenRouterAdapter implements ProviderAdapter {
         const error = await response.text();
         throw new Error(`OpenRouter API error: ${response.status} ${error}`);
       }
-      const data = await response.json();
+      const data = await response.json() as any;
       if (!data.choices || !data.choices[0] || !data.choices[0].message) {
         throw new Error('Invalid response from OpenRouter API');
       }

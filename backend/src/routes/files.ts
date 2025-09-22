@@ -41,7 +41,7 @@ export async function fileRoutes(fastify: FastifyInstance) {
       const { projectId } = request.params as { projectId: string };
       const files = await fileService.getProjectFiles(
         projectId,
-        request.user!.userId
+        request.user!.id
       );
       return reply.send({ files });
     } catch (error) {
