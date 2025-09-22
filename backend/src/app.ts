@@ -8,6 +8,7 @@ import { projectRoutes } from './routes/projects';
 import { promptRoutes } from './routes/prompts';
 import { chatRoutes } from './routes/chat';
 import { fileRoutes } from './routes/files';
+import { debugRoutes } from './routes/debug';
 export const createApp = () => {
   const app = fastify({
     logger: {
@@ -33,5 +34,6 @@ export const createApp = () => {
   app.register(promptRoutes);
   app.register(chatRoutes);
   app.register(fileRoutes);
+  app.register(debugRoutes);
   return app;
 };
