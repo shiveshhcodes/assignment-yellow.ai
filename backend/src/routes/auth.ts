@@ -5,10 +5,17 @@ export async function authRoutes(fastify: FastifyInstance) {
   const authService = new AuthService();
   fastify.post('/api/auth/register', async (request, reply) => {
     try {
+      console.log('Registration request body:', request.body);
       const validatedData = registerSchema.parse(request.body);
+      console.log('Validated data:', validatedData);
       const result = await authService.register(validatedData);
       return reply.status(201).send(result);
     } catch (error) {
+      console.error('Registration error:', error);
+      if (error instanceof Error) {
+        console.error('Error message:', error.message);
+        console.error('Error stack:', error.stack);
+      }
       return reply.status(400).send({ error: (error as Error).message });
     }
   });
