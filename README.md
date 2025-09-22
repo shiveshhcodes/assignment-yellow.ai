@@ -13,7 +13,7 @@ A full-stack chatbot platform for creating and managing AI-powered conversationa
 
 ## Technologies Used
 
-**Frontend:** React 18, TypeScript, Vite, Tailwind CSS, Shadcn/ui
+**Frontend:** React, TypeScript, Vite, Tailwind CSS, Shadcn/ui
 
 **Backend:** Node.js, Fastify, TypeScript, Prisma ORM, PostgreSQL
 
@@ -93,7 +93,7 @@ cd frontend
 npm run dev
 ```
 
-Your application will be available at:
+the application will be available at:
 - Frontend: http://localhost:8080
 - Backend API: http://localhost:3000
 - API Health Check: http://localhost:3000/health
@@ -102,7 +102,7 @@ Your application will be available at:
 
 1. **Create Account** - Register with email and password
 2. **Create Project** - Make a new chatbot project  
-3. **Add Prompts** - Define your chatbot's personality and behavior
+3. **Add Prompts** - Define the chatbot's personality and behavior
 4. **Start Chatting** - Open the chat interface and talk to your AI
 5. **Manage Projects** - Create multiple chatbots for different purposes
 
